@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 00:16:37 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/25 00:34:28 by chicky           ###   ########.fr       */
+/*   Updated: 2021/05/25 21:09:15 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,50 @@
 
 pile_a *init()
 {
-    pile_a *pile = malloc(sizeof(*pile));
-    pile->premier = NULL;
-    
+    pile_a *pile;
+    pile = malloc(sizeof(pile_a));
+    pile->premier = malloc(sizeof(element_a));
+    pile->premier->suivant = NULL;
+    return(pile);
 }
-void empiler(pile_a *pile, int nv_nbr)
-{
-    element_a *nouveau = malloc(sizeof(*nouveau));
-    if (pile == NULL || nouveau == NULL)
-        exit(EXIT_FAILURE);
 
-    nouveau-> nbr = nv_nbr;
-    nouveau->suivant = pile->premier;
-    pile->premier = nouveau;
+int empiler(pile_a *pile, char **argv)
+{
+    element_a   *tmp;
+    element_a   *nouveau;
+    int         i;
+    int         arg;
+    
+    i = 1;
+    if (pile == NULL)
+        exit(EXIT_FAILURE);
+    nouveau = pile->premier;
+    while (argv[i])
+    {
+        arg = ft_atoi(argv[i]);
+        // if (ft_check(arg, pile))
+        //     return(printf("Error\n"));
+        nouveau->nbr = arg;
+        nouveau->suivant = malloc(sizeof(element_a));
+        nouveau->suivant->suivant = NULL;
+        nouveau = nouveau->suivant;
+        i++;
+    } 
+    return (0);
+}
+
+int ft_check(int n, pile_a *pile)
+{
+    if (pile == NULL)
+        exit (EXIT_FAILURE);
+    element_a *actuel = pile->premier;
+    while (actuel != NULL)
+    {
+        if (actuel->nbr == n)
+            return (1);
+        actuel = actuel->suivant;
+    }
+    return (0);
 }
 
 void afficher_pile_a(pile_a *pile)
@@ -36,12 +67,70 @@ void afficher_pile_a(pile_a *pile)
         exit(EXIT_FAILURE);
         
     element_a *actuel = pile->premier;
-    while (actuel != NULL)
+    while (actuel->suivant != NULL)
     {
         printf("%d\n", actuel->nbr);
         actuel = actuel->suivant;
     }
-    printf("\n");
+    printf("\n"); 
+}
+
+void ft_sa(pile_a *pile)
+{
+    if (pile == NULL)
+        exit(EXIT_FAILURE);
+    
+    element_a *actuel;
+    int tmp;
+    
+    actuel = pile->premier;
+
+    tmp = actuel->nbr;
+    actuel->nbr = (actuel->suivant)->nbr;
+    (actuel->suivant)->nbr = tmp;
+}
+
+void ft_sb(pile_a *pile_b)
+{
+    if (pile_b == NULL)
+        exit(EXIT_FAILURE);
+    
+    element_a *actuel;
+    int tmp;
+    
+    actuel = pile_b->premier;
+
+    tmp = actuel->nbr;
+    actuel->nbr = (actuel->suivant)->nbr;
+    (actuel->suivant)->nbr = tmp;
+}
+void ft_ss(pile_a *pile, pile_a *pile_b)
+{
+    ft_sa(pile);
+    ft_sb(pile_b);
+}
+
+void ft_pb(pile_a *pile, pile_a *pile_b)
+{
+    if (pile == NULL || pile_b == NULL)
+        exit(EXIT_FAILURE);
+
+    element_a  *tmp;
+    element_a  *tmp2;
+
+    tmp = pile_b->premier;
+    tmp2 = pile->premier->suivant;
+    pile_b->premier = pile->premier;
+    pile_b->premier->suivant = tmp;
+    pile->premier = tmp2;
+}
+void ft_ra(pile_a *pile)
+{
+    if (pile == NULL)
+        exit(EXIT_FAILURE);
+
+    element_a *actuel;
+    element_a *tmp;
     
     
 }
