@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 23:39:01 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/25 21:09:06 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/05/26 12:46:39 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int     ft_check(int n, pile_a *pile);
 void    ft_sa(pile_a *pile);
 void    ft_pb(pile_a *pile, pile_a *pile_b);
 void    ft_ra(pile_a *pile);
+void    ft_rra(pile_a *pile);
 
 
 

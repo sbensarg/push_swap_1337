@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 00:16:37 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/25 21:09:15 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/05/26 13:29:40 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,53 @@ void ft_pb(pile_a *pile, pile_a *pile_b)
     pile_b->premier->suivant = tmp;
     pile->premier = tmp2;
 }
+
 void ft_ra(pile_a *pile)
 {
     if (pile == NULL)
         exit(EXIT_FAILURE);
 
-    element_a *actuel;
-    element_a *tmp;
+        element_a *first;
+        element_a *last;
     
     
+        first = pile->premier;
+        last = pile->premier;
+
+        while (last->suivant != NULL)
+        {
+            last = last->suivant;      
+        }
+        pile->premier = pile->premier->suivant;
+        first->suivant = NULL;
+        last->nbr = first->nbr;
+        last->suivant = first;
 }
+
+void ft_rra(pile_a *pile)
+{
+    if (pile == NULL)
+        exit(EXIT_FAILURE);
+
+        element_a *seclast;
+        element_a *last;
+    
+    
+        seclast = NULL;
+        last = pile->premier;
+
+        while (last->suivant != NULL)
+        {
+            seclast = last;
+            last = last->suivant;      
+        }
+
+        seclast->suivant = NULL;
+        last->suivant = pile->premier; 
+        last->nbr = seclast->nbr;
+        pile->premier= last; 
+}
+      
+   
+    
+    

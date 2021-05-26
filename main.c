@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 00:34:51 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/25 20:59:26 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/05/26 12:46:15 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
       //  afficher_pile_a(b);
 
        // afficher_pile_a(a);
-        ft_ra(a);
+        ft_rra(a);
         afficher_pile_a(a);
        // afficher_pile_a(a);
         
