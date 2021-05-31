@@ -6,7 +6,7 @@
 /*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 23:39:01 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/26 12:46:39 by chicky           ###   ########.fr       */
+/*   Updated: 2021/05/30 13:47:24 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <limits.h>
 
-typedef struct element_a element_a;
-struct element_a
-{
-    int     nbr;
-    element_a  *suivant;
-    
-};
-
-typedef struct pile_a pile_a;
-struct pile_a
-{
-    element_a *premier;
-};
-
-pile_a  *init();
-int    empiler(pile_a *pile, char **argv);
-void    afficher_pile_a(pile_a *pile);
-int     ft_atoi(const char *str);
-int     ft_check(int n, pile_a *pile);
-void    ft_sa(pile_a *pile);
-void    ft_pb(pile_a *pile, pile_a *pile_b);
-void    ft_ra(pile_a *pile);
-void    ft_rra(pile_a *pile);
-
+typedef struct  s_pile {
+    int             nbr;
+    struct s_pile   *suivant;
+}               t_pile;
+int		ft_atoi(const char *str);
+int    empiler(t_pile **head_ref, char **argv);
+void    print_pile(t_pile *pile);
+void    ft_sa(t_pile **head_ref);
+void    ft_sb(t_pile **head_ref_b);
+void    ft_ra(t_pile **head_ref);
+void    ft_rb(t_pile **head_ref_b);
+void    ft_rr(t_pile **head_ref, t_pile **head_ref_b);
+void    ft_rra(t_pile **head_ref);
+void    ft_rrb(t_pile **head_ref_b);
+void    ft_pb(t_pile **head_ref_a, t_pile **head_ref_b);
+void    ft_pa(t_pile **head_ref_b, t_pile **head_ref_a);
+void    ft_ss(t_pile **head_ref, t_pile **head_ref_b);
+int     ft_check(int n, t_pile **head_ref);
+void    ft_sort_3(t_pile **head_ref);
+int     ft_find_smallest_nbr(t_pile **head_ref);
+void    ft_sort_5(t_pile **head_ref,t_pile **head_ref_b);
+int     ft_sort_100(t_pile **head_ref,t_pile **head_ref_b);
+void    rec_pa(t_pile **head_ref,t_pile **head_ref_b);
 
 
 #endif

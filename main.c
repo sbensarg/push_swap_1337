@@ -5,42 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 00:34:51 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/26 12:46:15 by chicky           ###   ########.fr       */
+/*   Created: 2021/05/28 17:07:53 by chicky            #+#    #+#             */
+/*   Updated: 2021/05/30 23:20:37 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int main(int agrc, char **argv)
 {
-    int i;
-    
-    pile_a *a;
-    pile_a *b;
-    
-    a = init();
-    b = init();
-    
-    i = 0;
-    if (argc >= 2)
+    t_pile *pile = NULL;
+    t_pile *pile_b = NULL;
+    int ret;
+ 
+    if (agrc >= 2)
     {
-        empiler(a, argv);
-        afficher_pile_a(a);
-        // ft_sa(a);
-        // afficher_pile_a(a);
-       // ft_pb(a, b);
-      //  afficher_pile_a(b);
 
-       // afficher_pile_a(a);
-        ft_rra(a);
-        afficher_pile_a(a);
-       // afficher_pile_a(a);
+       if ((ret =  empiler(&pile, argv)) != 2)
+       {
+            // print_pile(pile);
+            // printf("\n");
+             ft_sort_3(&pile);
+            //  print_pile(pile_b);
+            //   printf("\n");
+            // rec_pa(&pile, &pile_b);
+          // ret = ft_find_smallest_nbr(&pile);
+             print_pile(pile);
+           
+       }
+        else
+            printf("Error\n");
+            
+        // printf("\n");
+        // ft_pb(&pile, &pile_b);
+        // ft_pb(&pile, &pile_b);
+        // ft_pb(&pile, &pile_b);
+        // ft_rrb(&pile_b);
+        // printf("\n");
+        // print_pile(pile_b);
+        // printf("\n");
+        // print_pile(pile);
+        // printf("\n");
+        // // ft_sb(&pile_b);
+        // print_pile(pile_b);
+        // printf("\n");
+        // print_pile(pile_b);
         
-            // if (ft_check(ft_atoi(argv[i]), a) == 0) 
-            //     afficher_pile_a(a);
-            // else
-            //     printf("error1\n");
     }
-    return (1);  
+   
+    
+  
+    return 0;
 }

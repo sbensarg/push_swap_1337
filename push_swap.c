@@ -5,53 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 00:16:37 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/26 13:29:40 by chicky           ###   ########.fr       */
+/*   Created: 2021/05/28 16:57:03 by chicky            #+#    #+#             */
+/*   Updated: 2021/05/29 21:43:41 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-pile_a *init()
+int ft_check(int n, t_pile **head_ref)
 {
-    pile_a *pile;
-    pile = malloc(sizeof(pile_a));
-    pile->premier = malloc(sizeof(element_a));
-    pile->premier->suivant = NULL;
-    return(pile);
-}
-
-int empiler(pile_a *pile, char **argv)
-{
-    element_a   *tmp;
-    element_a   *nouveau;
-    int         i;
-    int         arg;
-    
-    i = 1;
-    if (pile == NULL)
-        exit(EXIT_FAILURE);
-    nouveau = pile->premier;
-    while (argv[i])
-    {
-        arg = ft_atoi(argv[i]);
-        // if (ft_check(arg, pile))
-        //     return(printf("Error\n"));
-        nouveau->nbr = arg;
-        nouveau->suivant = malloc(sizeof(element_a));
-        nouveau->suivant->suivant = NULL;
-        nouveau = nouveau->suivant;
-        i++;
-    } 
-    return (0);
-}
-
-int ft_check(int n, pile_a *pile)
-{
-    if (pile == NULL)
-        exit (EXIT_FAILURE);
-    element_a *actuel = pile->premier;
+     if(*head_ref == NULL || (*head_ref)->suivant == NULL)
+        return (0);
+    t_pile *actuel;
+    actuel = *head_ref;
     while (actuel != NULL)
     {
         if (actuel->nbr == n)
@@ -61,116 +27,206 @@ int ft_check(int n, pile_a *pile)
     return (0);
 }
 
-void afficher_pile_a(pile_a *pile)
+int empiler(t_pile **head_ref, char **argv)
 {
-    if (pile == NULL)
-        exit(EXIT_FAILURE);
-        
-    element_a *actuel = pile->premier;
-    while (actuel->suivant != NULL)
+    t_pile *new_node;
+    int new_nbr;
+    int i;
+    
+    i = 1;
+    while (argv[i])
     {
-        printf("%d\n", actuel->nbr);
-        actuel = actuel->suivant;
+        if (*head_ref == NULL)
+        {
+            new_node = malloc(sizeof(t_pile));
+            *head_ref = new_node;
+        }
+        else
+        {
+            new_node->suivant = malloc(sizeof(t_pile));
+            new_node = new_node->suivant;
+        }
+        new_nbr = ft_atoi(argv[i]);
+          if (ft_check(new_nbr, head_ref))
+            return(2);
+        new_node->nbr = new_nbr;
+        i++;
     }
-    printf("\n"); 
 }
 
-void ft_sa(pile_a *pile)
+void print_pile(t_pile *pile)
 {
-    if (pile == NULL)
-        exit(EXIT_FAILURE);
+    while (pile != NULL)
+    {
+        printf("%d ", pile->nbr);
+        pile = pile->suivant;
+    }
+}
+
+void ft_ra(t_pile **head_ref)
+{
+    if(*head_ref == NULL || (*head_ref)->suivant == NULL)
+        return;
+
+    t_pile *first;
+    t_pile *last;
     
-    element_a *actuel;
+    first = *head_ref;
+    last = *head_ref;
+
+    while (last->suivant != NULL)
+    {
+        last = last->suivant;
+    }
+    
+    *head_ref = first->suivant;
+    first->suivant = NULL;
+    last->suivant = first;
+    printf("ra\n");
+}
+
+void ft_rb(t_pile **head_ref_b)
+{
+    if(*head_ref_b == NULL || (*head_ref_b)->suivant == NULL)
+        return;
+
+    t_pile *first;
+    t_pile *last;
+    
+    first = *head_ref_b;
+    last = *head_ref_b;
+
+    while (last->suivant != NULL)
+    {
+        last = last->suivant;
+    }
+    
+    *head_ref_b = first->suivant;
+    first->suivant = NULL;
+    last->suivant = first;
+     printf("rb\n");
+}
+void ft_rr(t_pile **head_ref, t_pile **head_ref_b)
+{
+    ft_ra(head_ref);
+    ft_rb(head_ref_b);
+     printf("rr\n");
+}
+
+
+
+void ft_rrb(t_pile **head_ref_b)
+{
+    if(*head_ref_b == NULL || (*head_ref_b)->suivant == NULL)
+        return;
+    t_pile *sec_last;
+    t_pile *last;
+    
+    sec_last = *head_ref_b;
+    last = *head_ref_b;
+    
+    while (last->suivant != NULL)
+    {
+        sec_last = last;
+        last = last->suivant;
+    }
+    
+    sec_last->suivant = NULL;
+    last->suivant = *head_ref_b;
+    *head_ref_b = last;
+     printf("rrb\n");
+        
+}
+void ft_rra(t_pile **head_ref)
+{
+    if(*head_ref == NULL || (*head_ref)->suivant == NULL)
+        return;
+    t_pile *sec_last;
+    t_pile *last;
+    
+    sec_last = *head_ref;
+    last = *head_ref;
+    
+    while (last->suivant != NULL)
+    {
+        sec_last = last;
+        last = last->suivant;
+    }
+    
+    sec_last->suivant = NULL;
+    last->suivant = *head_ref;
+    *head_ref = last;
+    printf("rra\n");
+        
+}
+
+void ft_rrr(t_pile **head_ref, t_pile **head_ref_b)
+{
+    ft_rra(head_ref);
+    ft_rrb(head_ref_b);
+}
+
+void ft_sa(t_pile **head_ref)
+{
+    if(*head_ref == NULL || (*head_ref)->suivant == NULL)
+        return;
+    t_pile *actuel;
     int tmp;
     
-    actuel = pile->premier;
-
+    actuel = *head_ref;
+    
     tmp = actuel->nbr;
     actuel->nbr = (actuel->suivant)->nbr;
     (actuel->suivant)->nbr = tmp;
+     printf("sa\n");
 }
 
-void ft_sb(pile_a *pile_b)
+
+void ft_sb(t_pile **head_ref_b)
 {
-    if (pile_b == NULL)
-        exit(EXIT_FAILURE);
-    
-    element_a *actuel;
+    if(*head_ref_b == NULL || (*head_ref_b)->suivant == NULL)
+        return;
+    t_pile *actuel;
     int tmp;
     
-    actuel = pile_b->premier;
-
+    actuel = *head_ref_b;
+    
     tmp = actuel->nbr;
     actuel->nbr = (actuel->suivant)->nbr;
     (actuel->suivant)->nbr = tmp;
+     printf("sb\n");
 }
-void ft_ss(pile_a *pile, pile_a *pile_b)
+
+void ft_ss(t_pile **head_ref, t_pile **head_ref_b)
 {
-    ft_sa(pile);
-    ft_sb(pile_b);
+    ft_sa(head_ref);
+    ft_sb(head_ref_b);
+     printf("ss\n");
 }
 
-void ft_pb(pile_a *pile, pile_a *pile_b)
+void ft_pb(t_pile **head_ref_a, t_pile **head_ref_b)
 {
-    if (pile == NULL || pile_b == NULL)
-        exit(EXIT_FAILURE);
-
-    element_a  *tmp;
-    element_a  *tmp2;
-
-    tmp = pile_b->premier;
-    tmp2 = pile->premier->suivant;
-    pile_b->premier = pile->premier;
-    pile_b->premier->suivant = tmp;
-    pile->premier = tmp2;
+    t_pile *a;
+    t_pile *b;
+    
+    a = (*head_ref_a)->suivant;
+    b = *head_ref_b;
+    
+    *head_ref_b = *head_ref_a;
+    (*head_ref_b)->suivant = b;
+    (*head_ref_a) = a;
+     printf("pb\n");
 }
-
-void ft_ra(pile_a *pile)
+void ft_pa(t_pile **head_ref_b, t_pile **head_ref_a)
 {
-    if (pile == NULL)
-        exit(EXIT_FAILURE);
-
-        element_a *first;
-        element_a *last;
+    t_pile *b;
+    t_pile *a;
     
+    b = (*head_ref_b)->suivant;
+    a = *head_ref_a;
     
-        first = pile->premier;
-        last = pile->premier;
-
-        while (last->suivant != NULL)
-        {
-            last = last->suivant;      
-        }
-        pile->premier = pile->premier->suivant;
-        first->suivant = NULL;
-        last->nbr = first->nbr;
-        last->suivant = first;
+    *head_ref_a = *head_ref_b;
+    (*head_ref_a)->suivant = a;
+    (*head_ref_b) = b;
+     printf("pa\n");
 }
-
-void ft_rra(pile_a *pile)
-{
-    if (pile == NULL)
-        exit(EXIT_FAILURE);
-
-        element_a *seclast;
-        element_a *last;
-    
-    
-        seclast = NULL;
-        last = pile->premier;
-
-        while (last->suivant != NULL)
-        {
-            seclast = last;
-            last = last->suivant;      
-        }
-
-        seclast->suivant = NULL;
-        last->suivant = pile->premier; 
-        last->nbr = seclast->nbr;
-        pile->premier= last; 
-}
-      
-   
-    
-    
