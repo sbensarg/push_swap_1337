@@ -1,0 +1,21 @@
+
+
+int main()
+{
+    head = 2 3 1 4 5 7 3;
+    int c = 0;
+    while(c != 3)
+    {
+        current = head;
+        smallest = 1;
+        while (current != smallest)
+        {
+                ra(head);
+                current = head;
+        }
+         pb(head);
+        c++;
+ }
+          
+    }
+}

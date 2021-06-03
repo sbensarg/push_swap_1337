@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 17:07:53 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/30 23:20:37 by chicky           ###   ########.fr       */
+/*   Updated: 2021/06/03 19:36:55 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,20 @@ int main(int agrc, char **argv)
        if ((ret =  empiler(&pile, argv)) != 2)
        {
             // print_pile(pile);
-            // printf("\n");
-             ft_sort_3(&pile);
+             //printf("\n");
+            ft_sort_100(&pile, &pile_b, agrc - 1);
+         //  ft_sort_100_b(&pile, agrc - 1);
+           // ft_sort_100_b(&pile , agrc - 1);
+           // reverse_print(pile);
+             //reverse_print(pile);
+            // ft_sort_3(&pile);
             //  print_pile(pile_b);
-            //   printf("\n");
-            // rec_pa(&pile, &pile_b);
+              // printf("\n");
+           rec_pa(&pile, &pile_b);
           // ret = ft_find_smallest_nbr(&pile);
              print_pile(pile);
-           
+           //    printf("\n");
+            // print_pile(pile_b);
        }
         else
             printf("Error\n");
@@ -57,3 +63,10 @@ int main(int agrc, char **argv)
   
     return 0;
 }
+
+
+//9 15 8 45 7 
+
+//7 9 15 8 45
+
+//45 7 9 

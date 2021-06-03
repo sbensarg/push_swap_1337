@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 16:57:03 by chicky            #+#    #+#             */
-/*   Updated: 2021/05/29 21:43:41 by chicky           ###   ########.fr       */
+/*   Updated: 2021/05/31 11:04:13 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_check(int n, t_pile **head_ref)
+int ft_check(int n, t_pile *actuel)
 {
-     if(*head_ref == NULL || (*head_ref)->suivant == NULL)
+    if(actuel == NULL || actuel->suivant == NULL)
         return (0);
-    t_pile *actuel;
-    actuel = *head_ref;
-    while (actuel != NULL)
+    while (actuel->suivant != NULL)
     {
         if (actuel->nbr == n)
             return (1);
@@ -39,19 +37,26 @@ int empiler(t_pile **head_ref, char **argv)
         if (*head_ref == NULL)
         {
             new_node = malloc(sizeof(t_pile));
+            if (!new_node)
+                return (1);
             *head_ref = new_node;
+            new_node->suivant = NULL;
         }
         else
         {
             new_node->suivant = malloc(sizeof(t_pile));
+            if (!new_node->suivant)
+                return (1);
             new_node = new_node->suivant;
+            new_node->suivant = NULL;
         }
         new_nbr = ft_atoi(argv[i]);
-          if (ft_check(new_nbr, head_ref))
+        if (ft_check(new_nbr, *head_ref))
             return(2);
         new_node->nbr = new_nbr;
         i++;
     }
+    return (0);
 }
 
 void print_pile(t_pile *pile)
