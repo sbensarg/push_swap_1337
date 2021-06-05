@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:45:48 by chicky            #+#    #+#             */
-/*   Updated: 2021/06/03 19:40:15 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/04 23:51:41 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,92 +149,118 @@ int ft_size(t_pile *actuel)
     return (0);
 }
 
-// int ft_sort_100(t_pile **head_ref,t_pile **head_ref_b, int  argc)
-// {
-//     int smallest_value;
-//     int pos;
-    
-//     pos = 0;
-//     t_pile *actuel;
+void check_b(t_pile **head_ref_b, int  argc)
+{
+     t_pile *actuel2; 
+     int smallest_value;
+    actuel2 = *head_ref_b;
+    int c = 0;
+    int pos = 0;
 
-//     actuel = *head_ref;
-//     int c = 0;
-//     while (c != 5)
-//     {
-//         smallest_value = ft_find_smallest_nbr(head_ref, &pos);
-//         while (actuel != NULL && actuel->nbr != smallest_value) 
-//         {
-//             ft_ra(head_ref);
-//             actuel = *head_ref;
-//         }
-//         ft_pb(head_ref, head_ref_b);
-//         c++;
-//     }
-    
-//     return (0);
-// }
-
-// int ft_sort_100_b(t_pile **head_ref, int  argc)
-// {
-//     int smallest_value;
-//     int pos;
-    
-//     pos = 0;
-//     t_pile *actuel;
-//     t_pile *tmp;
-
-//     actuel = *head_ref;
-//     int c = 0;
-//     while (c != 5)
-//     {
-//         if(actuel != NULL)
-//         {
-//             smallest_value = ft_find_smallest_nbr(&actuel, &pos);
-//         //    printf("small= |%d|\n",smallest_value);
-//         //    printf("----------------\n");
-//              while (actuel != NULL && actuel->nbr > actuel->suivant->nbr) 
-//              {
-//                 //tmp = actuel;
-//                 // ft_rra(head_ref);
-//                    actuel = *head_ref;
-//              //   if((*head_ref)->nbr > ((*head_ref)->suivant)->nbr)
-//                 ft_sa(head_ref);
-//               //  printf("actual = |%d|\n",actuel->nbr);
-//               //  break;
-//               //  actuel = tmp;
-//              }
-//            //  break;
-//           actuel = actuel->suivant;
-//         }
-//         c++;
-//     }
-    
-//     return (0);
-// }
-
+        smallest_value = ft_find_smallest_nbr(head_ref_b, &pos);
+        while (actuel2 != NULL && actuel2->nbr != smallest_value) 
+        {
+            if (pos <= argc / 2)
+                ft_rb(head_ref_b);
+            else
+                ft_rrb(head_ref_b);
+            actuel2 = *head_ref_b;
+        }
+}
 int ft_sort_100(t_pile **head_ref,t_pile **head_ref_b, int  argc)
 {
     int smallest_value;
     int pos;
     
     pos = 0;
-    smallest_value = ft_find_smallest_nbr(head_ref, &pos);
     t_pile *actuel;
 
     actuel = *head_ref;
-    while (actuel != NULL && actuel->nbr != smallest_value) 
+    int c = 0;
+    while (c < 100)
     {
-        if (pos <= argc / 2)
+        while (actuel != NULL) 
+        {
+             if (actuel->nbr >=0 && actuel->nbr < 20)
+                 break;
+            actuel = actuel->suivant;
+        }
+        if (c <= argc / 2)
             ft_ra(head_ref);
         else
             ft_rra(head_ref);
-    //  if((*head_ref)->nbr > ((*head_ref)->suivant)->nbr)
-    //          ft_sa(head_ref);
-        actuel = *head_ref;
+      
+       if (*head_ref_b != NULL)
+            check_b(head_ref_b,argc);
+        if((*head_ref)->nbr >=0 && (*head_ref)->nbr < 20)
+            ft_pb(head_ref, head_ref_b);
+        
+    //     while (actuel != NULL) 
+    //     {
+    //          if (actuel->nbr >=20 && actuel->nbr < 40)
+    //              break;
+    //         actuel = actuel->suivant;
+    //     }
+    //     if (c <= argc / 2)
+    //         ft_ra(head_ref);
+    //     else
+    //         ft_rra(head_ref);
+      
+    //    if (*head_ref_b != NULL)
+    //         check_b(head_ref_b,argc);
+    //     if((*head_ref)->nbr >=20 && (*head_ref)->nbr < 40)
+    //         ft_pb(head_ref, head_ref_b);
+        
+    //      while (actuel != NULL) 
+    //     {
+    //          if (actuel->nbr >=40 && actuel->nbr < 60)
+    //              break;
+    //         actuel = actuel->suivant;
+    //     }
+    //     if (c <= argc / 2)
+    //         ft_ra(head_ref);
+    //     else
+    //         ft_rra(head_ref);
+      
+    //    if (*head_ref_b != NULL)
+    //         check_b(head_ref_b,argc);
+    //     if((*head_ref)->nbr >=40 && (*head_ref)->nbr < 60)
+    //         ft_pb(head_ref, head_ref_b);
+            
+    //      while (actuel != NULL) 
+    //     {
+    //          if (actuel->nbr >=60 && actuel->nbr < 80)
+    //              break;
+    //         actuel = actuel->suivant;
+    //     }
+    //     if (c <= argc / 2)
+    //         ft_ra(head_ref);
+    //     else
+    //         ft_rra(head_ref);
+      
+    //    if (*head_ref_b != NULL)
+    //         check_b(head_ref_b,argc);
+    //     if((*head_ref)->nbr >=60 && (*head_ref)->nbr < 80)
+    //         ft_pb(head_ref, head_ref_b);
+
+                    
+    //      while (actuel != NULL) 
+    //     {
+    //          if (actuel->nbr >=80 && actuel->nbr < 100)
+    //              break;
+    //         actuel = actuel->suivant;
+    //     }
+    //     if (c <= argc / 2)
+    //         ft_ra(head_ref);
+    //     else
+    //         ft_rra(head_ref);
+      
+    //    if (*head_ref_b != NULL)
+    //         check_b(head_ref_b,argc);
+    //     if((*head_ref)->nbr >=80 && (*head_ref)->nbr < 100)
+    //         ft_pb(head_ref, head_ref_b);
+        argc--;
+        c++;
     }
-    ft_pb(head_ref, head_ref_b);
-    argc--;
-     while(*head_ref != NULL)
-        ft_sort_100(head_ref, head_ref_b, argc);
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chicky <chicky@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 17:07:53 by chicky            #+#    #+#             */
-/*   Updated: 2021/06/03 19:36:55 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/04 23:37:50 by chicky           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int main(int agrc, char **argv)
            // reverse_print(pile);
              //reverse_print(pile);
             // ft_sort_3(&pile);
-            //  print_pile(pile_b);
-              // printf("\n");
-           rec_pa(&pile, &pile_b);
+           ///   print_pile(pile_b);
+             //  printf("\n");
+         // rec_pa(&pile, &pile_b);
           // ret = ft_find_smallest_nbr(&pile);
-             print_pile(pile);
-           //    printf("\n");
-            // print_pile(pile_b);
+           //  print_pile(pile);
+               printf("\n");
+             print_pile(pile_b);
        }
         else
             printf("Error\n");
