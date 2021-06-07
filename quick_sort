@@ -161,3 +161,37 @@ int main()
  
     return 0;
 }
+
+
+int ft_find_end_of_interval(t_pile **head_ref, int i)
+{
+    t_pile *actuel;
+    int *tab;
+    int temp;
+    int j;
+    
+    j = 0;
+    actuel = *head_ref;
+   // tab = malloc(sizeof((ft_size(actuel) + 1) * sizeof(int)));
+    tab = malloc(sizeof(int) * (ft_size(actuel) + 1));
+    while(actuel != NULL)
+    {
+        tab[j] = actuel->nbr;
+        j++;
+        actuel = actuel->suivant;
+    }
+    tab[j] = '\0';
+    j = 0;
+    while(tab[j + 1])
+    {
+        if (tab[j] > tab[j + 1])
+        {
+            temp = tab[j];
+            tab[j] = tab[j + 1];
+            tab[j + 1] = temp;
+            j = -1;
+        }
+        j++;
+    }
+    return (tab[i - 1]);
+}
