@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:31:47 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/10 17:02:31 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:01:30 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void	ft_sort_100_inter(t_pile **head_ref, t_pile **head_ref_b, int interval)
 		data.bottom = reverse_scan(*head_ref, data.start, data.end, &data.pos2);
 		if (data.pos1 <= ft_size(*head_ref) - data.pos2)
 			while (data.top != (*head_ref)->nbr)
-				ft_ra(head_ref);
+				ft_ra(head_ref, 1);
 		else
 			while (data.bottom != (*head_ref)->nbr)
-				ft_rra(head_ref);
+				ft_rra(head_ref, 1);
 		if ((*head_ref)->nbr >= data.start && (*head_ref)->nbr <= data.end)
-			ft_pb(head_ref, head_ref_b);
+			ft_pb(head_ref, head_ref_b, 1);
 		j++;
 	}
 }
@@ -110,10 +110,10 @@ void	rec_pa(t_pile **head_ref, t_pile **head_ref_b)
 		pos1 = pos_biggest_nbr(head_ref_b, biggest_nbr);
 		if (pos1 <= ft_size(*head_ref_b) / 2)
 			while ((*head_ref_b)->nbr != biggest_nbr)
-				ft_rb(head_ref_b);
+				ft_rb(head_ref_b, 1);
 		else
 			while ((*head_ref_b)->nbr != biggest_nbr)
-				ft_rrb(head_ref_b);
-		ft_pa(head_ref_b, head_ref);
+				ft_rrb(head_ref_b, 1);
+		ft_pa(head_ref_b, head_ref, 1);
 	}
 }

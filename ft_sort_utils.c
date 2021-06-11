@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:43:57 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/10 16:44:58 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/11 13:25:17 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,26 @@ int	scan(t_pile *head, int start, int end, int *pos)
 	return (cur->nbr);
 }
 
-int ft_find_smallest_nbr(t_pile **head_ref)
+int	ft_find_smallest_nbr(t_pile **head_ref)
 {
-	int max_value;
-    t_pile *actuel;
+	int		max_value;
+	t_pile	*actuel;
 
 	max_value = INT_MAX;
 	actuel = *head_ref;
 	while (actuel != NULL)
 	{
-		if(actuel->nbr < max_value)
+		if (actuel->nbr < max_value)
 			max_value = actuel->nbr;
 		actuel = actuel->suivant;
 	}
-	return (max_value); 
+	return (max_value);
 }
 
-int ft_find_biggest_nbr(t_pile **head_ref)
+int	ft_find_biggest_nbr(t_pile **head_ref)
 {
-	int max_value;
-	t_pile *actuel;
+	int		max_value;
+	t_pile	*actuel;
 
 	max_value = 0;
 	actuel = *head_ref;
@@ -75,13 +75,13 @@ int ft_find_biggest_nbr(t_pile **head_ref)
 			max_value = actuel->nbr;
 		actuel = actuel->suivant;
 	}
-	return (max_value); 
+	return (max_value);
 }
 
-int pos_biggest_nbr(t_pile **head_ref, int nbr)
+int	pos_biggest_nbr(t_pile **head_ref, int nbr)
 {
-	int pos;
-	t_pile *actuel;
+	int		pos;
+	t_pile	*actuel;
 
 	pos = 0;
 	actuel = *head_ref;

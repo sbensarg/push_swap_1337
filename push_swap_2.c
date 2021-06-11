@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 17:29:06 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/10 18:16:26 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/11 19:19:24 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_rrr(t_pile **head_ref, t_pile **head_ref_b)
 {
-	ft_rra(head_ref);
-	ft_rrb(head_ref_b);
+	ft_rra(head_ref, 1);
+	ft_rrb(head_ref_b, 1);
 }
 
 int	ft_check(int n, t_pile *actuel)
@@ -30,7 +30,31 @@ int	ft_check(int n, t_pile *actuel)
 	}
 	return (0);
 }
-
+int	first_node(t_pile **head_ref, t_pile *new_node, int *i, char **argv)
+{
+	int		new_nbr;
+	if (*head_ref == NULL)
+	{
+		new_node = malloc(sizeof(t_pile));
+		if (!new_node)
+			return (1);
+		*head_ref = new_node;
+		new_node->suivant = NULL;
+	}
+	else
+	{
+		new_node->suivant = malloc(sizeof(t_pile));
+		if (!new_node->suivant)
+			return (1);
+		new_node = new_node->suivant;
+		new_node->suivant = NULL;
+	}
+	new_nbr = ft_atoi(argv[*i]);
+	if (ft_check(new_nbr, *head_ref))
+		return (2);
+	new_node->nbr = new_nbr;
+	return (0);
+}
 int	empiler(t_pile **head_ref, char **argv)
 {
 	t_pile	*new_node;
@@ -47,6 +71,7 @@ int	empiler(t_pile **head_ref, char **argv)
 				return (1);
 			*head_ref = new_node;
 			new_node->suivant = NULL;
+			
 		}
 		else
 		{
@@ -60,6 +85,7 @@ int	empiler(t_pile **head_ref, char **argv)
 		if (ft_check(new_nbr, *head_ref))
 			return (2);
 		new_node->nbr = new_nbr;
+		// first_node(head_ref, new_node, &i, argv);
 		i++;
 	}
 	return (0);
@@ -67,7 +93,7 @@ int	empiler(t_pile **head_ref, char **argv)
 
 int	ft_size(t_pile *actuel)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (actuel)
