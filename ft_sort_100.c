@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:31:47 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/11 17:01:30 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/14 12:38:31 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	*fill_tab_from_list(t_pile **head_ref)
 	actuel = *head_ref;
 	j = 0;
 	tab = malloc((ft_size(actuel) + 1) * sizeof(int));
+	if (tab == NULL)
+		return (NULL);
 	while (actuel != NULL)
 	{
 		tab[j] = actuel->nbr;
@@ -102,11 +104,13 @@ void	ft_sort_100_global(t_pile **head_ref, t_pile **head_ref_b)
 void	rec_pa(t_pile **head_ref, t_pile **head_ref_b)
 {
 	int		biggest_nbr;
+	int		s;
 	int		pos1;
 
 	while (ft_size(*head_ref_b) > 0)
 	{
-		biggest_nbr = ft_find_biggest_nbr(head_ref_b);
+		s = ft_find_smallest_nbr(head_ref_b);
+		biggest_nbr = ft_find_biggest_nbr(head_ref_b, s);
 		pos1 = pos_biggest_nbr(head_ref_b, biggest_nbr);
 		if (pos1 <= ft_size(*head_ref_b) / 2)
 			while ((*head_ref_b)->nbr != biggest_nbr)

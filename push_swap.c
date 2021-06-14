@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 16:57:03 by chicky            #+#    #+#             */
-/*   Updated: 2021/06/11 17:03:00 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/14 13:45:08 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	ft_ra(t_pile **head_ref, int flag)
 		write(1, "ra\n", 3);
 }
 
-void	ft_rr(t_pile **head_ref, t_pile **head_ref_b)
+void	ft_rr(t_pile **head_ref, t_pile **head_ref_b, int flag)
 {
-	ft_ra(head_ref, 1);
-	ft_rb(head_ref_b, 1);
-	write(1, "rr\n", 3);
+	ft_ra(head_ref, 0);
+	ft_rb(head_ref_b, 0);
+	if (flag == 1)
+		write(1, "rr\n", 3);
 }
 
 void	ft_rra(t_pile **head_ref, int flag)
@@ -62,7 +63,9 @@ void	ft_sa(t_pile **head_ref, int flag)
 {
 	t_pile	*actuel;
 	int		tmp;
-
+	
+	if (*head_ref == NULL || (*head_ref)->suivant == NULL)
+		return ;
 	actuel = *head_ref;
 	tmp = actuel->nbr;
 	actuel->nbr = (actuel->suivant)->nbr;
@@ -75,7 +78,9 @@ void	ft_pa(t_pile **head_ref_b, t_pile **head_ref_a, int flag)
 {
 	t_pile	*b;
 	t_pile	*a;
-
+	
+	if (*head_ref_b == NULL)
+		return ;
 	b = (*head_ref_b)->suivant;
 	a = *head_ref_a;
 	*head_ref_a = *head_ref_b;

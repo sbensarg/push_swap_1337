@@ -6,16 +6,22 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 17:29:06 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/11 19:19:24 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/14 13:33:45 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rrr(t_pile **head_ref, t_pile **head_ref_b)
+void	ft_rrr(t_pile **head_ref, t_pile **head_ref_b, int flag)
 {
-	ft_rra(head_ref, 1);
-	ft_rrb(head_ref_b, 1);
+	if (*head_ref == NULL || (*head_ref)->suivant == NULL)
+		return ;
+	if (*head_ref_b == NULL || (*head_ref_b)->suivant == NULL)
+		return ;
+	ft_rra(head_ref, 0);
+	ft_rrb(head_ref_b, 0);
+	if (flag == 1)
+		write(1, "rrr\n", 3);
 }
 
 int	ft_check(int n, t_pile *actuel)

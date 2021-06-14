@@ -30,13 +30,11 @@ int main(int argc, char **argv)
 	int f;
 	int ret2;
 
-	int size;
-
     if (argc >= 2)
     {
        if ((ret =  empiler(&pile, argv)) != 2)
        {
-		   while(1)
+		   while(1)			
 		   {
 			   ret2 = get_next_line(0, &line);
 			   if(ft_strncmp(line, "ra", 3) == 0)
@@ -67,6 +65,22 @@ int main(int argc, char **argv)
 			   {
 				   ft_pb(&pile, &pile_b, 0);
 			   }
+			      else if (ft_strncmp(line, "sb", 3) == 0)
+			   {
+				   ft_sb(&pile_b, 0);
+			   }
+			      else if (ft_strncmp(line, "ss", 3) == 0)
+			   {
+				   ft_ss(&pile, &pile_b, 0);
+			   }
+			      else if (ft_strncmp(line, "rr", 3) == 0)
+			   {
+				   ft_rr(&pile, &pile_b, 0);
+			   }
+			      else if (ft_strncmp(line, "rrr", 3) == 0)
+			   {
+				   ft_rrr(&pile, &pile_b, 0);
+			   }
 			   else if (ret2 == 1 && strlen(line) == 0)
 			   {
 				   continue ;
@@ -87,6 +101,11 @@ int main(int argc, char **argv)
 			else 
 				return (ft_write("OK", 0));
        }
+	    else
+		{
+			printf("Error\n");
+			return (0);
+		}
     }
     return 0;
 }

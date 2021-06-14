@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:43:57 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/11 13:25:17 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/14 12:02:28 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	reverse_scan(t_pile *head, int start, int end, int *pos)
 	int	ret;
 
 	i = 0;
-	while (head)
+	while (head && head->suivant != NULL)
 	{
 		if (head->nbr >= start && head->nbr <= end)
 		{
@@ -36,7 +36,7 @@ int	scan(t_pile *head, int start, int end, int *pos)
 	t_pile	*cur;
 
 	cur = head;
-	while (cur)
+	while (cur && cur->suivant != NULL)
 	{
 		if (cur->nbr >= start && cur->nbr <= end)
 			break ;
@@ -62,20 +62,20 @@ int	ft_find_smallest_nbr(t_pile **head_ref)
 	return (max_value);
 }
 
-int	ft_find_biggest_nbr(t_pile **head_ref)
+int	ft_find_biggest_nbr(t_pile **head_ref, int s)
 {
-	int		max_value;
+	//int		max_value;
 	t_pile	*actuel;
 
-	max_value = 0;
+//	max_value = 0;
 	actuel = *head_ref;
 	while (actuel != NULL)
 	{
-		if (actuel->nbr > max_value)
-			max_value = actuel->nbr;
+		if (actuel->nbr > s)
+			s = actuel->nbr;
 		actuel = actuel->suivant;
 	}
-	return (max_value);
+	return (s);
 }
 
 int	pos_biggest_nbr(t_pile **head_ref, int nbr)

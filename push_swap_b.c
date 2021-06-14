@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 17:30:28 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/11 17:03:15 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/14 16:00:36 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_rrb(t_pile **head_ref_b, int flag)
 		write(1, "rrb\n", 4);
 }
 
-void	ft_sb(t_pile **head_ref_b)
+void	ft_sb(t_pile **head_ref_b, int flag)
 {
 	t_pile	*actuel;
 	int		tmp;
@@ -62,7 +62,8 @@ void	ft_sb(t_pile **head_ref_b)
 	tmp = actuel->nbr;
 	actuel->nbr = (actuel->suivant)->nbr;
 	(actuel->suivant)->nbr = tmp;
-	write(1, "sb\n", 3);
+	if (flag == 1)
+		write(1, "sb\n", 3);
 }
 
 void	ft_pb(t_pile **head_ref_a, t_pile **head_ref_b, int flag)
@@ -79,9 +80,11 @@ void	ft_pb(t_pile **head_ref_a, t_pile **head_ref_b, int flag)
 		write(1, "pb\n", 3);
 }
 
-void	ft_ss(t_pile **head_ref, t_pile **head_ref_b)
+void	ft_ss(t_pile **head_ref, t_pile **head_ref_b, int flag)
 {
 	ft_sa(head_ref, 1);
-	ft_sb(head_ref_b);
-	write(1, "ss\n", 3);
+	ft_sb(head_ref_b, 1);
+	if (flag == 1)
+		write(1, "ss\n", 3);
+	
 }
