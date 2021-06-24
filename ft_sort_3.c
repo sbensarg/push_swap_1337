@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:06:27 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/13 16:51:30 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/16 17:12:46 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	ft_sort_3(t_pile **head_ref)
 {
 	if (*head_ref == NULL || (*head_ref)->suivant == NULL)
 		return ;
-	if (ft_size(*head_ref) == 2 && (*head_ref)->nbr > ((*head_ref)->suivant)->nbr)
+	if (ft_size(*head_ref) == 2
+		&& (*head_ref)->nbr > ((*head_ref)->suivant)->nbr)
 	{
 		ft_sa(head_ref, 1);
 		exit(0);

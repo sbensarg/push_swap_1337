@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 17:29:06 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/14 13:33:45 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/18 19:47:02 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,88 +24,76 @@ void	ft_rrr(t_pile **head_ref, t_pile **head_ref_b, int flag)
 		write(1, "rrr\n", 3);
 }
 
-int	ft_check(int n, t_pile *actuel)
+int	ft_check(int n, t_pile *actuel, int *check)
 {
 	if (actuel == NULL || actuel->suivant == NULL)
 		return (0);
 	while (actuel->suivant != NULL)
 	{
 		if (actuel->nbr == n)
+		{
+			*check = -2;
 			return (1);
+		}
 		actuel = actuel->suivant;
 	}
 	return (0);
 }
-int	first_node(t_pile **head_ref, t_pile *new_node, int *i, char **argv)
+
+t_pile	*alloc_pile(void)
 {
-	int		new_nbr;
-	if (*head_ref == NULL)
-	{
-		new_node = malloc(sizeof(t_pile));
-		if (!new_node)
-			return (1);
-		*head_ref = new_node;
-		new_node->suivant = NULL;
-	}
-	else
-	{
-		new_node->suivant = malloc(sizeof(t_pile));
-		if (!new_node->suivant)
-			return (1);
-		new_node = new_node->suivant;
-		new_node->suivant = NULL;
-	}
-	new_nbr = ft_atoi(argv[*i]);
-	if (ft_check(new_nbr, *head_ref))
-		return (2);
-	new_node->nbr = new_nbr;
-	return (0);
+	t_pile	*ret;
+
+	ret = malloc(sizeof(t_pile));
+	if (ret == NULL)
+		return (NULL);
+	ret->suivant = NULL;
+	return (ret);
 }
+
+int	fct(t_pile **head_ref, int *i, char **argv)
+{
+	int		nbr;
+	int		check;
+	int		j;
+
+	j = *i;
+	nbr = ft_atoi(argv[j], &check);
+	ft_check(nbr, *head_ref, &check);
+	if (check == -1 || check == -2)
+	{
+		freelist(*head_ref);
+		write(2, "Error\n", 6);
+		exit(0);
+	}
+	return (nbr);
+}
+
 int	empiler(t_pile **head_ref, char **argv)
 {
 	t_pile	*new_node;
-	int		new_nbr;
 	int		i;
+	int		nbr;
 
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (argv[++i])
 	{
 		if (*head_ref == NULL)
 		{
-			new_node = malloc(sizeof(t_pile));
+			new_node = alloc_pile();
 			if (!new_node)
 				return (1);
 			*head_ref = new_node;
-			new_node->suivant = NULL;
-			
 		}
 		else
 		{
-			new_node->suivant = malloc(sizeof(t_pile));
+			new_node->suivant = alloc_pile();
 			if (!new_node->suivant)
 				return (1);
 			new_node = new_node->suivant;
-			new_node->suivant = NULL;
 		}
-		new_nbr = ft_atoi(argv[i]);
-		if (ft_check(new_nbr, *head_ref))
-			return (2);
-		new_node->nbr = new_nbr;
-		// first_node(head_ref, new_node, &i, argv);
-		i++;
+		nbr = fct(head_ref, &i, argv);
+		new_node->nbr = nbr;
 	}
 	return (0);
-}
-
-int	ft_size(t_pile *actuel)
-{
-	int	i;
-
-	i = 0;
-	while (actuel)
-	{
-		actuel = actuel->suivant;
-		i++;
-	}
-	return (i);
 }

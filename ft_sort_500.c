@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:45:48 by chicky            #+#    #+#             */
-/*   Updated: 2021/06/11 17:01:51 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:23:44 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_sort_500_inter(t_pile **head_ref, t_pile **head_ref_b, int interval)
 
 	j = 0;
 	data.start = ft_find_smallest_nbr(head_ref);
-	data.end = ft_find_end_of_interval(head_ref, interval);
+	data.end = ft_find_end_of_interval(head_ref, interval, ft_size(*head_ref));
 	while (j < interval)
 	{
 		data.pos1 = 0;

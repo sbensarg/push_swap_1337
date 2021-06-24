@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 16:57:03 by chicky            #+#    #+#             */
-/*   Updated: 2021/06/14 13:45:08 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/15 18:25:14 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_sa(t_pile **head_ref, int flag)
 {
 	t_pile	*actuel;
 	int		tmp;
-	
+
 	if (*head_ref == NULL || (*head_ref)->suivant == NULL)
 		return ;
 	actuel = *head_ref;
@@ -78,7 +78,7 @@ void	ft_pa(t_pile **head_ref_b, t_pile **head_ref_a, int flag)
 {
 	t_pile	*b;
 	t_pile	*a;
-	
+
 	if (*head_ref_b == NULL)
 		return ;
 	b = (*head_ref_b)->suivant;

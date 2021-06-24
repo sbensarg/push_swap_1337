@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:31:47 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/14 12:38:31 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/17 13:40:59 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ int	*fill_tab_from_list(t_pile **head_ref)
 	return (tab);
 }
 
-int	ft_find_end_of_interval(t_pile **head_ref, int i)
+int	ft_find_end_of_interval(t_pile **head_ref, int i, int size)
 {
-	t_pile	*actuel;
 	int		*tab;
 	int		temp;
 	int		j;
+	int		ret;
 
 	j = 0;
-	actuel = *head_ref;
 	tab = fill_tab_from_list(head_ref);
-	while (tab[j + 1])
+	while (j < size - 1)
 	{
 		if (tab[j] > tab[j + 1])
 		{
@@ -54,7 +53,9 @@ int	ft_find_end_of_interval(t_pile **head_ref, int i)
 		}
 		j++;
 	}
-	return (tab[i - 1]);
+	ret = tab[i - 1];
+	free (tab);
+	return (ret);
 }
 
 void	ft_sort_100_inter(t_pile **head_ref, t_pile **head_ref_b, int interval)
@@ -64,7 +65,7 @@ void	ft_sort_100_inter(t_pile **head_ref, t_pile **head_ref_b, int interval)
 
 	j = 0;
 	data.start = ft_find_smallest_nbr(head_ref);
-	data.end = ft_find_end_of_interval(head_ref, interval);
+	data.end = ft_find_end_of_interval(head_ref, interval, ft_size(*head_ref));
 	while (j < interval)
 	{
 		data.pos1 = 0;
@@ -85,12 +86,10 @@ void	ft_sort_100_inter(t_pile **head_ref, t_pile **head_ref_b, int interval)
 
 void	ft_sort_100_global(t_pile **head_ref, t_pile **head_ref_b)
 {
-	int		s;
 	int		j;
 	t_data	data;
 
 	j = 0;
-	s = ft_find_smallest_nbr(head_ref);
 	data.size = ft_size(*head_ref);
 	data.interval = data.size / 5;
 	while (j < 4)

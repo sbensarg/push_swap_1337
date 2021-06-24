@@ -6,7 +6,7 @@
 /*   By: sbensarg <sbensarg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:43:57 by sbensarg          #+#    #+#             */
-/*   Updated: 2021/06/14 12:02:28 by sbensarg         ###   ########.fr       */
+/*   Updated: 2021/06/16 19:10:52 by sbensarg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ int	ft_find_smallest_nbr(t_pile **head_ref)
 
 int	ft_find_biggest_nbr(t_pile **head_ref, int s)
 {
-	//int		max_value;
 	t_pile	*actuel;
 
-//	max_value = 0;
 	actuel = *head_ref;
 	while (actuel != NULL)
 	{
